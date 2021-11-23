@@ -1,9 +1,15 @@
-version: "3.1"
+version: "3.2"
 services:
-  rest-api:
-    build: .
-    restart: always
-    ports: 
-      - 5000:5000
-      - 5005:5005
-    
+    nginx:
+        build: .
+        links:
+            - "api"
+        ports:
+            - "80:80"
+        tty: true
+    api:
+        build: 
+            dockerfile: DockerfileJS
+            context: .
+       # ports:
+        #    - "3000:3000"

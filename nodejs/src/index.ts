@@ -5,7 +5,7 @@ import "reflect-metadata";
 import { createConnection } from "typeorm";
 
 const app = express();
-const port = 5005;
+const port = 3000;
 createConnection();
 // Middleware
 app.use(cors());

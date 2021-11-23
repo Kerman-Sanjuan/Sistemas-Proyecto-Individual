@@ -1,29 +1,24 @@
-# FROM ubuntu
-FROM nikolaik/python-nodejs:python3.10-nodejs17
-
-RUN mkdir /code
-
-COPY . /code
-
-RUN apt -qq update 
-
-ENV FLASK_APP=/code/python/src/app.py   
-
-RUN pip install -r /code/python/src/requirements.txt
-
-EXPOSE 5000
-
-WORKDIR /code/python
 
 
-EXPOSE 5005
+FROM nginx
 
-WORKDIR /code/nodejs
+WORKDIR /etc/nginx
 
-RUN npm install 
-RUN npm install sqlite3 --save
-RUN npm audit fix --force
+COPY ./resources/nginx.conf /etc/nginx/
+
+COPY ./run.sh	/
+
+COPY ./resources/myserver /etc/nginx/sites-avaliable
+
+COPY ./resources/default.conf /
+# RUN ln -sf /etc/nginx/sites-avaliable/myserver /etc/nginx/sites-enabled/myserver
 
 
-#CMD ["npm","start"]
-CMD ["sh","/code/run.sh"]
+# Es posible que no haya que hacer reload
+
+EXPOSE 80 
+
+# Entrada -> 80 ----> al 3000 que es otro contenedor escuchando
+
+# CMD ["nginx", "-g", "daemon off;"]
+CMD /run.sh

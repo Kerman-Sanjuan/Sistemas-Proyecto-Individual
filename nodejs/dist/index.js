@@ -9,7 +9,7 @@ var dbRoutes_1 = __importDefault(require("./routes/dbRoutes"));
 require("reflect-metadata");
 var typeorm_1 = require("typeorm");
 var app = (0, express_1.default)();
-var port = 5005;
+var port = 3000;
 (0, typeorm_1.createConnection)();
 // Middleware
 app.use((0, cors_1.default)());
