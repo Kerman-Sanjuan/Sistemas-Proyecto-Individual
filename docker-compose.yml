@@ -1,15 +1,18 @@
 version: "3.2"
+
 services:
     nginx:
-        build: .
+        image: kermansanjuan/nginx-as
         links:
             - "api"
         ports:
             - "80:80"
         tty: true
+
     api:
-        build: 
-            dockerfile: DockerfileJS
-            context: .
+        image: kermansanjuan/express-as
+        volumes:
+          - ./nodejs:/code
+
        # ports:
         #    - "3000:3000"
