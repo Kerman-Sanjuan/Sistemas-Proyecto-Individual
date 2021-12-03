@@ -9,7 +9,6 @@ spec:
   selector:
     matchLabels:
       service: nginx
-  strategy: {}
   template:
     metadata:
       labels:
@@ -20,7 +19,6 @@ spec:
           name: nginx
           ports:
             - containerPort: 80
-          resources: {}
           tty: true
       restartPolicy: Always
-status: {}
+

@@ -11,5 +11,4 @@ spec:
       targetPort: 80
   selector:
     service: nginx
-status:
-  loadBalancer: {}
+
